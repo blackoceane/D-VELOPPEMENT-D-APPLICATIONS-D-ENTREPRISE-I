@@ -1,0 +1,43 @@
+﻿<Window x:Class="L_Joyce.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:L_Joyce"
+        xmlns:views="clr-namespace:L_Joyce.Views"
+        xmlns:viewmodels="clr-namespace:L_Joyce.ViewModels"
+        mc:Ignorable="d"
+        Title="MainWindow" Name="win" Height="450" Width="800">
+    <Window.Resources>
+        <DataTemplate x:Name="AcceuilViewTemplate" DataType="{x:Type  viewmodels:AcceuilViewModel}">
+            <views:AcceuilView  />
+        </DataTemplate>
+        <DataTemplate x:Name="PrduitViewTemplate" DataType="{x:Type  viewmodels:ProduitViewModel}">
+            <views:ProduitView  />
+        </DataTemplate>
+        <DataTemplate x:Name="ClientViewTemplate" DataType="{x:Type  viewmodels:ClientViewModel}">
+            <views:ClientView  />
+        </DataTemplate>
+         <DataTemplate x:Name="CommandeViewTemplate" DataType="{x:Type  viewmodels:CommandeViewModel}">
+     <views:CommandeView  />
+ </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition   Height="Auto"/>
+            <!--menu-->
+            <RowDefinition   Height="*"/>
+            <!--View spécifique-->
+        </Grid.RowDefinitions>
+
+        <Menu   Width="{Binding ElementName=win, Path=Width}">
+            <MenuItem Header="_Accueil" Command="{Binding CmdAcceuil}"  />
+            <MenuItem  Header="_Produits" Command="{Binding CmdProduit}"   />
+            <MenuItem  Header="Client" Command="{Binding CmdClient}"   />
+            <MenuItem  Header="Commande" Command="{Binding CmdCommande}"   />
+
+        </Menu>
+        <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}" />
+
+    </Grid>
+</Window>
